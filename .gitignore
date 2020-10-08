@@ -1,0 +1,8 @@
+vendor
+composer-setup.php
+composer.phar
+composer.lock
+__backup
+logs
+logs/app.log
+_sessions/*

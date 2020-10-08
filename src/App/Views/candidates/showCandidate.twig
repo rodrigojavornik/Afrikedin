@@ -1,0 +1,86 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+  {% include 'header.twig' %}
+
+    <!-- Candidates Details -->
+    <div class="alice-bg padding-top-60 section-padding-bottom candidates-details">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="candidate-details">
+              <div class="title-and-info">
+                <div class="title">
+                  <div class="thumb">
+                    <img src="{{ resume.linkedin_image_url }}" class="rounded-circle" alt="" width="80">
+                  </div>
+                  <div class="title-body">
+                    <h5 class="font-weight-bold">{{ resume.name }}</h5>
+                    <div class="">
+                      <div class="pb-3">
+                        {% if resume.id_occupation_area != '' %}
+                        <span class="mr-3"><i class="fas fa-check-square mr-2"></i>{{ resume.occupation.name }}</span>
+                        {% endif %}
+                        {% if resume.id_city != '' %}
+                        <span class="mr-3"><i class="fas fa-map-marker-alt mr-2"></i>{{ resume.city.name }}</span>
+                        {% endif %}
+                        {% if resume.remote_work == true %}
+                        <span class="mr-3"><i class="fas fa-globe-americas mr-2"></i>Aceita trabalho remoto</span>
+                        {% endif %}
+                      </div>
+                      {% if resume.linkedin_url != '' %}
+                      <span class="mr-3"><i class="fab fa-linkedin mr-2"></i><a href="{{ resume.linkedin_url }}" target="_blank">LinkedIn</a></span>
+                      {% endif %}
+                      {% if resume.phone != '' %}
+                      <span class="mr-3"><i class="fas fa-phone-alt mr-2"></i></i>{{ resume.phone }}</span>
+                      {% endif %}
+                      {% if resume.email != '' %}
+                      <span class="mr-3"><i class="fas fa-envelope mr-2"></i>{{ resume.email }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skill-and-profile">
+                <div class="skill ml-2">
+                  <label class="font-weight-bold">Skills:</label>
+                  {% for skill in resume.skills %}
+                  <span>{{skill}}</span>
+                  {% endfor %}                    
+                </div>
+              </div>
+              
+              <div class="details-information section-padding-60">
+                <div class="row">
+                  <div class="col-xl-7 col-lg-8">
+                    <div class="about-details details-section">
+                      <h4><i data-feather="align-left"></i>Resumo</h4>
+                          {{resume.description | raw}}
+                    </div>
+                    
+                  </div>
+
+                  <div class="col-xl-5 col-lg-4">
+                    <div class="about-details details-section">
+                      <h6 class="mb-3"><i data-feather="align-rigth"></i>Compartilhar perfil:</h6>
+                      <span class="mr-3"><i class="fab fa-linkedin mr-2"></i><a href='https://www.linkedin.com/shareArticle?mini=true&url=https://recoloca.feedz.com.br/perfil/{{resume.id}}&t=Eu no Feedz Recoloca' target="_blank">LinkedIn</a></span>
+                      <span class="mr-3"><i style="color: #25D366;" class="fab fa-whatsapp mr-2"></i><a href="https://wa.me/?text=https://recoloca.feedz.com.br/perfil/{{resume.id}}" class="share" >Whatsapp</a></span>
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Candidates Details End -->
+
+
+    {% include 'footer.twig' %}
+  
+{% endblock %}

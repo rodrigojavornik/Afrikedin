@@ -1,0 +1,60 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+{% include 'header.twig' %}
+
+<div class="container">
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-md-6" style="height: 200px;">
+            <canvas id="chart" width="200px" height="200px"></canvas>
+        </div>
+        <div class="col-md-6">
+            <h3>Total de inscritos: {{totalInscritos}}</h3>
+            <br/>
+            <h3>Total de publicados: {{totalPublicados}}</h3>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+    var ctx = document.getElementById('chart').getContext('2d');
+    var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                {% for label in labels %}
+                    "{{label}}"
+                    {% if not loop.last %}
+                        ,
+                    {% endif %}
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Inscritos',
+                borderColor: '#b6ff00',
+                data: [
+                    {% for inscrito in   inscritos %}
+                        "{{inscrito}}"
+                        {% if not loop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                ]
+            },{
+                label: 'Perfis publicados',
+                borderColor: '#0023ff',
+                data: [
+                    {% for publicado in publicados %}
+                        "{{publicado}}"
+                        {% if not loop.last %}
+                            ,
+                        {% endif %}
+                    {% endfor %}
+                ]
+            }]
+        },
+    });
+</script>
+{% endblock %}

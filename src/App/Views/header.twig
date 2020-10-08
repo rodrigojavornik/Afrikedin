@@ -1,0 +1,54 @@
+<header>
+  <!-- inicio Cabecalho -->
+  <nav class="navbar navbar-expand-sm navbar-light fixed-top menu-fixed">
+    <div class="container">
+
+      <a href="/" class="navbar-brand">
+        <img src="/assets/img/marca_color_fundo_branco.png" style="width: 110px;">
+        <img src="/assets/img/employers/acate-reconecta.png" style="width: 80px;">
+      </a>
+
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav-principal">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="/" class="nav-link">Candidatos</a>
+          </li>
+          <li class="nav-item">
+            <a href="#employers" class="nav-link">Empresas</a>
+          </li>
+          <li class="nav-item">
+            <a href="/vagas" class="nav-link">Vagas</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link"></a>
+          </li>
+          <li class="nav-item">
+            {% if user.linkedin_access_token == null %}
+            <a href="/login" class="btn btn-outline-primary ml-2">Login pelo Linkedin</a>
+            {% elseif user.resume.status == 0 %}
+            <a href="/perfil" class="btn btn-primary mr-4 mt-1">Publicar Perfil</a>
+            {% endif %}
+          </li>
+          {% if user.linkedin_access_token != null %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="{{user.linkedin_image_url}}" class="rounded-circle mr-2"alt="" width="30" height="30">
+              <span>{{ user.name }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/perfil">Meu Perfil</a>
+                <a class="dropdown-item" href="/logout/">Sair</a>
+            </div>
+        </li>
+        {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+<!--/fim Cabecalho -->

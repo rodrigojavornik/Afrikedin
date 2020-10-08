@@ -1,0 +1,254 @@
+{#calendario list#}
+{% extends 'base.twig' %}
+
+{% block content %}
+
+{% include 'header.twig' %}
+<script src="/assets/jquery.caret.min.js"></script>
+<script src="/assets/jquery.tag-editor.min.js"></script>
+
+<!-- Edit Profile -->
+<div class="alice-bg padding-top-60 section-padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="candidate-details">
+
+                    <div class="dashboard-container">
+                        <div class="dashboard-content-wrapper">
+                            <div class="title">
+                                <div class="thumb">
+                                    <img src="{{ resume.linkedin_image_url }}" class="rounded-circle" alt="" width="80">
+                                </div>
+                            </div>
+                            <form id="formEditCurriculum" class="pt-3" action="/perfil" method="POST" autocomplete="off">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="custom-control custom-checkbox" style="margin: 25px 0;">
+                                            <input type="checkbox" class="custom-control-input" id="idCheckPublicar"
+                                                name="status" {% if resume.status == true %} checked {% endif %} {% if resume.id_city == '' %} checked {% endif %}>
+                                            <label class="custom-control-label" for="idCheckPublicar">
+                                                <b>Desejo publicar meu perfil</b>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nome*</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" value="{{ resume.name }}" name="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email*</label>
+                                            <input type="email" class="form-control" id="idEmail" name="email"
+                                                value="{{ resume.email }}" required>
+                                            <small id="emailHelp" class="form-text text-muted"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="linkedinUrl">Link para seu perfil no LinkedIn</label>
+                                            <input type="text" class="form-control" id="idLinkedinUrl"
+                                                name="linkedinUrl" value="{{resume.linkedin_url}}">
+                                            <small class="form-text text-muted"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Qual sua área de atuação*</label>
+                                            <select id="inputState" class="custom-select" name="occupationArea" required>
+                                                <option {% if resume.id_occupation_area == null %} selected {% endif %} disabled>Selecione uma área</option>
+                                                {% for occupation in occupations %}
+                                                <option value="{{occupation.id}}" {% if resume.id_occupation_area == occupation.id %} selected {% endif %}>{{occupation.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <small class="form-text text-muted"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Em qual cidade gostaria de trabalhar*</label>
+                                            <select id="idInputCity" class="form-control select2" name="city" required>
+                                                <option {% if resume.id_city == null %} selected {% endif %} disabled>Selecione uma cidade</option>
+                                                {% for city in cities %}
+                                                <option value="{{ city.id }}" {% if resume.id_city == city.id %}selected{% endif %}>{{city.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <small class="form-text text-muted"></small>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Telefone</label>
+                                            <input type="text" class="form-control" id="idPhone" name="phone"
+                                                data-inputmask="'alias': 'telefone'">
+                                            <small class="form-text text-muted"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding-top: 42px;">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="exampleCheck1" name="remoteWork" {% if resume.remote_work == true %} checked {% endif %}
+                                                style="display: inline-block;vertical-align: middle;line-height: normal;">
+                                            <label class="custom-control-label" for="exampleCheck1">
+                                                Aceito trabalhar remoto
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Skills*</label>
+                                            <textarea id="skills" type="text" class="form-control form-control-lg"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                placeholder="" name="skills" required></textarea>
+                                            <small id="emailHelp" class="form-text text-muted">
+                                                Você pode adicionar até 5 habilidades. Pressione "enter" para cadastrar a habilidade.</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Resumo*</label>
+                                            <textarea class="form-control summer-note summernote" id="idTextAreaDescription"
+                                                rows="3" name="description" required>{{ resume.description }}</textarea>
+                                            <small id="emailHelp" class="form-text text-muted">
+                                                Escreva um pouco sobre você e suas experiências</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Link para seu perfil público</label>
+                                            <input type="text" class="form-control" id="profileLink" name="profileLink" value="https://recoloca.feedz.com.br/perfil/{{resume.id}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" style="padding-top: 36px;">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <button id="buttonCopyProfileLink" type="button" class="btn btn-outline-link" onclick="copyUrl()"> 
+                                                <i class="fas fa-link mr-2"></i>
+                                                Copiar link
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {# <div class="alert alert-success" role="alert" style="width: 40%;">
+                                    <i class="far fa-thumbs-up"></i> Tudo certo! Link copiado.
+                                </div> #}
+
+                                <hr>
+
+                                <div class="text-center">
+                                    <a href="/" id="cancelButtonEditForm" type="button" class="btn btn-outline-secondary">Cancelar</a>
+                                    <button id="buttonEditForm" type="submit" class="btn btn-primary">Salvar</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Candidates Details End -->
+
+{% include 'footer.twig' %}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function () {
+        Inputmask.extendAliases({
+            'telefone': {
+                mask: ["(99) 9999-9999", "(99) 99999-9999"]
+            },
+            "data": {
+                mask: "99/99/9999"
+            },
+
+        });
+
+        $(":input").inputmask();
+        $("#skills").tagEditor({
+            initialTags: [
+                {% for skill in resume.skills %}
+                    "{{ skill }}",
+                {% endfor %}
+            ],
+            maxTags: 5
+        });
+        $('#idPhone').val("{{ resume.phone }}");
+
+        $('#formEditCurriculum').on('submit', function(){
+            event.preventDefault();
+            
+            if ($(this).valid() === true) {
+                $(this).unbind('submit').submit();
+            }
+
+        });
+
+        $.validator.addMethod("htmlEditorEmpty", function(value, element) {
+            return this.optional(element) || !$(element).summernote('isEmpty');
+        }, "Ei! Que tal falar um pouco sobre você?");
+
+        $('#formEditCurriculum').validate({
+            ignore: "",
+            rules: {
+                name: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                occupationArea: "required",
+                city: "required",
+                skills: "required",
+                description: {
+                    htmlEditorEmpty: true
+                }
+            },
+            messages: {
+                name: "Ei! Precisamos saber o seu nome.",
+                email: {
+                    required: "Acho que você equeceu de colocar seu email ...",
+                    email: "Ops! E-mail inválido."
+                },
+                occupationArea: "Ei! Precisamos saber sua área de atuação.",
+                city: "Ei! Precisamos saber sua cidade.",
+                skills: "Ei! Precisamos saber suas skills.",
+                description: "Ei! Que tal falar um pouco sobre você?"
+            }
+        }); 
+    });
+
+    function copyUrl() {
+        var copyText = document.getElementById("profileLink");
+      
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+      
+        document.execCommand("copy");
+      
+    }
+</script>
+
+
+{% endblock %}

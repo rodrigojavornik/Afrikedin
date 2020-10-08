@@ -1,0 +1,83 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <a href="/"><img src="/assets/img/marca_color_fundo_branco.png" width="132"></a>
+        <h4 style="padding-left: 15px;">Criamos ambientes de trabalho mais felizes.</h4>
+      </div>
+      <div class="col-md-4 pt-3 links-useful">
+        <h4>Links uteis</h4>
+        <ul class="navbar-nav">
+          <li><a href="https://app.feedz.com.br/" target="_blank">Acessar a Feedz</a></li>
+          <li><a href="https://www.feedz.com.br/blog/" target="_blank">Blog</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 links-social col-xs-12">
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/c/FeedzOficial" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/FeedzOficial" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/feedzoficial" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/feedzpeopleanalytics" target="_blank" class="btn btn-outline-primary">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </li>
+        </ul>  
+        <div class="text-right pt-4">
+          <p style="margin-top: 15px; padding-right: 18px;"><a href="mailto:recoloca@feedz.com.br">recoloca@feedz.com.br</a></p>
+        </div>   
+      </div>
+      
+    </div>
+  </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 pt-2">
+              <p class="love-feedz text-center">
+                Feito com <i class="fas fa-heart"></i>
+                pela <a href="https://www.feedz.com.br/" target="_blank">Feedz</a>
+              </p>
+          </div>
+        </div>
+    </div>
+
+</footer>
+
+
+<script>
+  $(document).ready(function(){
+    $('a').click(function(){
+      $('html, body').animate({
+          scrollTop: $( $(this).attr('href') ).offset().top
+      }, 1500);
+      return false;
+  });
+  
+    $('.select2').select2();
+    $('.summer-note').summernote({
+      height: 300,
+      toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']]
+      ],
+     // placeholder: "Escreva um pouco sobre você e suas experiências"
+    });
+  });
+</script>

@@ -1,0 +1,30 @@
+{% extends 'base.twig' %}
+
+{% block content %}
+
+  {% include 'header.twig' %}
+
+    
+    <div class="padding-top-60 section-padding-bottom candidates-details">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-8" style="padding-top: 120px;">
+                <h1 class="display-1">Ops :(</h1>
+                <p class="lead">Parece que ocorreu um erro. Tente novamente! <br> 
+                    Caso persista, entre em contato com a gente. Será um prazer ajudar!
+                </p>
+                <div class="mt-4">
+                    <span><i class="fas fa-envelope mr-2"></i><a href="mailto:recoloca@feedz.com.br">recoloca@feedz.com.br</a></span>
+                </div> 
+                <div class="mt-4">
+                    <a href="/" class="btn btn-primary"><i class="fas fa-arrow-left"></i>  Voltar para página incial</a>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5 d-none d-md-block">
+                <img src="assets/img/empty-pulse-question-to-reply.png" class="img-fluid pt-5 ml-2">
+            </div>
+        </div>
+      </div>
+    </div>
+  
+{% endblock %}

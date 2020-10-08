@@ -1,0 +1,30 @@
+<section id="home"><!-- Início seção home -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 d-flex mt-5"><!-- Textos da seção -->
+          <div class="align-self-center">
+            <h1 class="display-4 mt-4" style="font-weight: 500;">Feedz Recoloca</h1>
+            <p class="pt-2">
+              A plataforma Recoloca faz parte do Projeto ACATE Reconecta, que tem como objetivo 
+              auxiliar profissionais do setor de tecnologia a buscar uma recolocação no mercado e 
+              facilitar às empresas o preenchimento de vagas em aberto neste período de crise da COVID-19. 
+            </p>
+            <p>
+              A ferramenta é simples, gratuita e procura promover rápidas recolocações por meio de indicação. 
+              Cadastrou, compartilhou, recolocou!
+            </p>
+
+            <div class="mt-4 mb-5">
+              {% if user.linkedin_access_token == null %}
+              <a href="/login" target="_blank" class="btn btn-primary">Cadastre-se pelo Linkedin</a>
+              {% endif %}
+            </div>
+
+          </div>
+        </div><!--/fim textos da seção -->
+        <div class="col-md-5 d-none d-md-block">
+          <img src="assets/img/undraw_web_search_eetr.png" class="img-fluid pt-5 ml-5">
+        </div>
+      </div>
+    </div>
+</section><!--/fim seção home -->
