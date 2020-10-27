@@ -13,9 +13,10 @@ class AuthController
 {
 
     private $app;
-    const CLIENT_ID = '###############';
-    const CLIENT_SECRET = '###########';
-    const REDIRECT_URI = 'https://######/login/linkedin';
+    const CLIENT_ID = '78u0aqc16eoshv';
+    const CLIENT_SECRET = 'GLCbXezAGBuoXs4E';
+    const REDIRECT_URI = 'http://afrikedin-com-br.umbler.net/login/linkedin';
+    // const REDIRECT_URI = 'http://afrikedin.com.br/login/linkedin';
     //const REDIRECT_URI = 'http://localhost:8081/login/linkedin';
     const SCOPES = 'r_emailaddress,r_liteprofile,w_member_social';
 
