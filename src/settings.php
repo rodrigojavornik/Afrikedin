@@ -19,9 +19,9 @@ return [
         'db' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => '',
-            'username' => '',
-            'password' => "",
+            'database' => 'mysql669.umbler.com',
+            'username' => 'afrikedin',
+            'password' => "1gu4ld4d3",
             'charset' => '',
             'collation' => 'utf8_unicode_ci',
 	        'prefix' => '',
